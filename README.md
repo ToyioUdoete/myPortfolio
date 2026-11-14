@@ -1,10 +1,18 @@
 # Toyiomfon Udoete | Portfolio
 
-Personal portfolio for my research on diffusion-based medical image restoration and verifiable vision-language models, plus earlier ML and web projects.
-
-The hero portrait is rendered on a canvas with a diffusion-style noise schedule; visitors can drag the slider to add noise back. Open the page over http (GitHub Pages or `python3 -m http.server`) to see it; from `file://` the browser blocks the canvas and the plain photo shows instead.
+Personal portfolio for my work in artificial intelligence, computer vision, medical imaging, and web development.
 
 ![Portfolio hero screenshot](screenshots/hero.png)
+
+## Page layout
+
+1. Intro with portrait
+2. Research
+3. Education and experience
+4. Projects
+5. Contact
+
+The page includes a page-load sequence, a moving network background in the intro, scroll-in effects for sections and project cards, a reading-progress bar, and an active-section highlight in the menu. All motion is turned off for visitors who have "reduce motion" set on their device.
 
 ## Contents
 
