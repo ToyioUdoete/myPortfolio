@@ -77,7 +77,7 @@
       .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 23px; color: var(--blue); font-size: 11px; font-weight: 500; }
       .eyebrow::before { width: 24px; height: 3px; background: var(--accent); content: ""; }
       h1 { max-width: 650px; margin: 0; font-size: 56px; line-height: 1.08; font-weight: 700; letter-spacing: 0; }
-      h1 span { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 8px; text-underline-offset: 2px; }
+      h1 span { color: var(--blue); }
       .hero-role { margin: 24px 0 12px; font-size: 16px; font-weight: 800; }
       .hero-copy { max-width: 570px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.85; }
       .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 30px; }
@@ -90,10 +90,8 @@
       .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
       .hero-meta span::before { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); content: ""; }
       .portrait-wrap { position: relative; max-width: 420px; justify-self: end; width: 100%; }
-      .portrait-frame { position: relative; overflow: hidden; background: var(--blue); aspect-ratio: 4 / 4.6; }
-      .portrait-frame::after { position: absolute; inset: 12px; border: 1px solid rgba(255,255,255,.48); content: ""; pointer-events: none; }
-      .portrait-frame img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 36%; }
-      .portrait-index { position: absolute; top: -14px; left: -16px; z-index: 1; display: grid; width: 42px; aspect-ratio: 1; place-items: center; background: var(--blue); color: white; font: 11px var(--mono); }
+      .portrait-frame { position: relative; overflow: hidden; background: var(--blue); aspect-ratio: 4 / 5; border-radius: 6px; }
+      .portrait-frame img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 64%; }
 
       .section { padding-block: 90px; }
       .projects-section { width: 100%; max-width: none; padding-inline: 0; background: #fff; }
@@ -162,7 +160,7 @@
       .research-section .section-kicker { color: var(--blue); }
       .research-section .section-intro { color: var(--muted); }
       .research-list { border-top: 1px solid var(--line); }
-      .research-item { display: grid; grid-template-columns: 54px minmax(0, 1fr) 150px; gap: 22px; align-items: start; padding: 24px 0; border-bottom: 1px solid var(--line); }
+      .research-item { display: grid; grid-template-columns: 54px minmax(0, 1fr) 190px; gap: 22px; align-items: start; padding: 24px 0; border-bottom: 1px solid var(--line); }
       .research-number { color: var(--blue); font: 11px var(--mono); }
       .research-item h3 { margin: 0; font-size: 18px; line-height: 1.4; }
       .research-item p { max-width: 680px; margin: 8px 0 0; color: var(--muted); font-size: 13px; }
@@ -180,16 +178,10 @@
       .nav-links a.is-active { color: var(--blue); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 5px; }
 
       .hero { position: relative; isolation: isolate; }
-      .neural-bg { position: absolute; z-index: -1; top: 0; left: 50%; width: 100vw; height: 100%; transform: translateX(-50%); pointer-events: none;
-        -webkit-mask-image: radial-gradient(ellipse 70% 80% at 65% 45%, #000 30%, transparent 80%); mask-image: radial-gradient(ellipse 70% 80% at 65% 45%, #000 30%, transparent 80%); }
 
-      h1 span { text-decoration: none; background: linear-gradient(var(--accent), var(--accent)) 0 96% / 0% 8px no-repeat; transition: background-size 1s cubic-bezier(.2,.8,.2,1) .7s; }
-      .is-loaded h1 span { background-size: 100% 8px; }
-      .typed::after { content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 4px; vertical-align: -3px; background: var(--blue); animation: caret 1s steps(1) infinite; }
-      @keyframes caret { 50% { opacity: 0; } }
 
       .js .hero-grid > div > *, .js .portrait-wrap { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
-      .js .portrait-wrap { transform: translateY(18px) scale(.98); }
+      .js .portrait-wrap { transform: translateY(18px); }
       .is-loaded .hero-grid > div > *, .is-loaded .portrait-wrap { opacity: 1; transform: none; }
       .is-loaded .hero-grid > div > :nth-child(2) { transition-delay: .08s; }
       .is-loaded .hero-grid > div > :nth-child(3) { transition-delay: .16s; }
@@ -197,17 +189,6 @@
       .is-loaded .hero-grid > div > :nth-child(5) { transition-delay: .32s; }
       .is-loaded .portrait-wrap { transition-delay: .2s; }
 
-      .detect-box { position: absolute; z-index: 2; left: 33%; top: 37%; width: 36%; height: 33%; opacity: 0; transform: scale(1.25); transition: opacity .5s ease 1.4s, transform .6s cubic-bezier(.2,.8,.2,1) 1.4s; }
-      .is-loaded .detect-box { opacity: 1; transform: none; }
-      .detect-box i { position: absolute; width: 18px; height: 18px; border: 0 solid #fff; filter: drop-shadow(0 0 4px rgba(0, 49, 82, .6)); }
-      .detect-box i:nth-child(1) { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
-      .detect-box i:nth-child(2) { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
-      .detect-box i:nth-child(3) { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
-      .detect-box i:nth-child(4) { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
-      .is-loaded .detect-box i { animation: lock 2.4s ease-in-out 2.2s infinite; }
-      @keyframes lock { 50% { transform: scale(.82); } }
-      .portrait-index { animation: pulse 2.8s ease-in-out 1.5s infinite; }
-      @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 49, 82, .35); } 50% { box-shadow: 0 0 0 10px rgba(0, 49, 82, 0); } }
 
       .button { position: relative; overflow: hidden; }
       .button::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; transform: skewX(-20deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); transition: left .6s ease; pointer-events: none; }
@@ -278,7 +259,6 @@
       }
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; transition-delay: 0s !important; animation: none !important; }
-        .typed::after { display: none; }
       }
     </style>
   </head>
@@ -305,12 +285,10 @@
 
     <main id="main">
       <section class="hero shell" id="top" aria-labelledby="hero-title">
-        <canvas class="neural-bg" id="neural" aria-hidden="true"></canvas>
         <div class="hero-grid">
           <div>
-            <p class="eyebrow">AI · Computer vision · Medical imaging</p>
             <h1 id="hero-title">Hello, I’m<br /><span>Toyio Udoete.</span></h1>
-            <p class="hero-role"><span class="sr-only">AI graduate student &amp; researcher</span><span class="typed" aria-hidden="true" data-text="AI graduate student &amp; researcher">AI graduate student &amp; researcher</span></p>
+            <p class="hero-role">AI graduate student &amp; researcher</p>
             <p class="hero-copy">I’m an MS Artificial Intelligence student at the University of Wyoming, where I work with Dr. Shivanand Venkanna Sheshappanavar. My research applies computer vision to PCOS analysis through automated follicular structure detection and clinical diagnostics, with a focus on building AI tools for real healthcare needs.</p>
             <div class="hero-actions">
               <a class="button" href="#work">Explore my work <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -319,8 +297,7 @@
 
           </div>
           <div class="portrait-wrap">
-            <span class="portrait-index" aria-hidden="true">01</span>
-            <div class="portrait-frame"><span class="detect-box" aria-hidden="true"><i></i><i></i><i></i><i></i></span><img src="assets/images/heroimage.jpeg" alt="Portrait of Toyiomfon Udoete" width="400" height="400" fetchpriority="high" /></div>
+            <div class="portrait-frame"><img src="assets/images/heroimage.jpeg" alt="Portrait of Toyiomfon Udoete" width="400" height="400" fetchpriority="high" /></div>
           </div>
         </div>
       </section>
@@ -332,8 +309,9 @@
             <p class="section-intro">Current and recent work across medical imaging, image restoration, explainability, and vision-language systems.</p>
           </div>
           <div class="research-list">
-            <article class="research-item"><span class="research-number">01</span><div><h3>Diffusion-Based Denoising &amp; Follicle Segmentation in PCOS Ultrasound</h3><p>Developing a morphology-aware diffusion framework with MAN Attention for ultrasound denoising and automated follicle segmentation.</p></div><span class="research-paper">Paper coming soon</span></article>
-            <article class="research-item"><span class="research-number">02</span><div><h3>Single-Image Deraining with Frozen-Backbone Feature Ablations</h3><p>Studying convolution, attention, and multi-scale embedding strategies for a lightweight deraining front end built around a frozen RAINet backbone.</p></div><span class="research-paper">Paper coming soon</span></article>
+            <article class="research-item"><span class="research-number">01</span><div><h3>Restoring Ovarian Ultrasound for Reliable Follicle Detection</h3><p>A diffusion-based restoration method for ovarian ultrasound, evaluated by how reliably follicles can be detected after restoration rather than by image quality scores alone.</p></div><span class="research-paper">WVAQ Workshop, WACV 2027<br />Paper coming soon</span></article>
+            <article class="research-item"><span class="research-number">02</span><div><h3>Trust but Verify: Training-Free Evidence Verification for VLM-Generated Ovarian Ultrasound Reports</h3><p>A training-free method that checks each statement in a vision-language model's ultrasound report against detected follicle evidence and rejects claims it cannot support.</p></div><span class="research-paper">FABRIC Workshop, WACV 2027<br />Paper coming soon</span></article>
+            <article class="research-item"><span class="research-number">03</span><div><h3>Frozen-Backbone Adaptation: An Empirical Study of Component Substitution in a Pretrained Deraining Network</h3><p>An empirical study of substituting convolution, attention, and multi-scale embedding components into a frozen, pretrained RAINet deraining network.</p></div><span class="research-paper">WVAQ Workshop, WACV 2027<br />Paper coming soon</span></article>
           </div>
         </div>
       </section>
@@ -407,13 +385,6 @@
         // Page-load sequence
         requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("is-loaded")));
 
-        // Typed role line
-        const typed = document.querySelector(".typed");
-        if (typed && !reduce) {
-          const text = typed.dataset.text; typed.textContent = "";
-          let i = 0;
-          setTimeout(function tick() { typed.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(tick, 38 + Math.random() * 50); }, 650);
-        }
 
         // Scroll reveals
         const groups = [".section-heading", ".education-row", ".skill-line", ".background-column > h3", ".timeline-item", ".project-card", ".contact-grid > *"];
@@ -444,38 +415,6 @@
           card.style.setProperty("--mx", e.clientX - r.left + "px"); card.style.setProperty("--my", e.clientY - r.top + "px");
         }));
 
-        // Neural-network background in the hero
-        const cv = document.getElementById("neural");
-        if (!cv || reduce) return;
-        const ctx = cv.getContext("2d");
-        let W, H, nodes = [], mouse = { x: -999, y: -999 }, running = true;
-        function size() {
-          const dpr = Math.min(devicePixelRatio || 1, 2), r = cv.getBoundingClientRect();
-          W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-          const n = Math.round(Math.min(90, (W * H) / 16000));
-          nodes = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3, r: 1.2 + Math.random() * 1.6 }));
-        }
-        function frame() {
-          if (!running) return;
-          ctx.clearRect(0, 0, W, H);
-          for (const p of nodes) {
-            p.x += p.vx; p.y += p.vy;
-            if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1;
-            const dx = mouse.x - p.x, dy = mouse.y - p.y, d = Math.hypot(dx, dy);
-            if (d < 160) { p.x += dx * .004; p.y += dy * .004; }
-          }
-          for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
-            const a = nodes[i], b = nodes[j], d = Math.hypot(a.x - b.x, a.y - b.y);
-            if (d < 130) { ctx.strokeStyle = "rgba(0,49,82," + (0.16 * (1 - d / 130)) + ")"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
-          }
-          for (const p of nodes) { ctx.fillStyle = "rgba(0,49,82,.35)"; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill(); }
-          requestAnimationFrame(frame);
-        }
-        const hero = document.getElementById("top");
-        hero.addEventListener("pointermove", (e) => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
-        hero.addEventListener("pointerleave", () => { mouse.x = mouse.y = -999; });
-        new IntersectionObserver(([e]) => { const was = running; running = e.isIntersecting; if (running && !was) frame(); }).observe(hero);
-        addEventListener("resize", size); size(); frame();
       })();
     </script>
   </body>

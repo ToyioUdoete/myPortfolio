@@ -12,7 +12,7 @@ Personal portfolio for my work in artificial intelligence, computer vision, medi
 4. Projects
 5. Contact
 
-The page includes a page-load sequence, a moving network background in the intro, scroll-in effects for sections and project cards, a reading-progress bar, and an active-section highlight in the menu. All motion is turned off for visitors who have "reduce motion" set on their device.
+The page includes a gentle page-load fade, scroll-in effects for sections and project cards, a reading-progress bar, and an active-section highlight in the menu. All motion is turned off for visitors who have "reduce motion" set on their device.
 
 ## Contents
 
