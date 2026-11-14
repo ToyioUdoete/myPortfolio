@@ -89,9 +89,13 @@
       .hero-meta { display: flex; flex-wrap: wrap; gap: 18px 24px; margin-top: 34px; color: var(--muted); font: 11px var(--mono); }
       .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
       .hero-meta span::before { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); content: ""; }
-      .portrait-wrap { position: relative; max-width: 420px; justify-self: end; width: 100%; }
-      .portrait-frame { position: relative; overflow: hidden; background: var(--blue); aspect-ratio: 4 / 5; border-radius: 6px; }
-      .portrait-frame img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 64%; }
+      .portrait-wrap { position: relative; max-width: 400px; justify-self: end; width: 100%; margin: 0 22px 22px 0; }
+      .portrait-wrap::before { position: absolute; inset: 22px -22px -22px 22px; border: 1.5px solid var(--blue); border-radius: 200px 200px 12px 12px; content: ""; transition: inset .9s cubic-bezier(.2,.8,.2,1) .5s; }
+      .js .portrait-wrap::before { inset: 0; }
+      .is-loaded .portrait-wrap::before { inset: 22px -22px -22px 22px; }
+      .portrait-frame { position: relative; overflow: hidden; background: var(--blue); aspect-ratio: 4 / 5; border-radius: 200px 200px 12px 12px; }
+      .portrait-frame picture { display: block; height: 100%; }
+      .portrait-frame img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center 30%; }
 
       .section { padding-block: 90px; }
       .projects-section { width: 100%; max-width: none; padding-inline: 0; background: #fff; }
@@ -188,6 +192,8 @@
       .is-loaded .hero-grid > div > :nth-child(4) { transition-delay: .24s; }
       .is-loaded .hero-grid > div > :nth-child(5) { transition-delay: .32s; }
       .is-loaded .portrait-wrap { transition-delay: .2s; }
+      .typed::after { content: ""; display: inline-block; width: 2px; height: 1.05em; margin-left: 4px; vertical-align: -3px; background: var(--blue); animation: caret 1s steps(1) infinite; }
+      @keyframes caret { 50% { opacity: 0; } }
 
 
       .button { position: relative; overflow: hidden; }
@@ -240,7 +246,6 @@
         .hero-role { margin-top: 18px; }
         .hero-copy { font-size: 14px; }
         .portrait-wrap { width: min(82%, 340px); justify-self: center; }
-        .portrait-frame { aspect-ratio: 1 / 1.08; }
         .section { padding-block: 56px; }
         .section-heading { display: block; margin-bottom: 25px; }
         h2 { font-size: 29px; }
@@ -259,6 +264,7 @@
       }
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; transition-delay: 0s !important; animation: none !important; }
+        .typed::after { display: none; }
       }
     </style>
   </head>
@@ -288,7 +294,7 @@
         <div class="hero-grid">
           <div>
             <h1 id="hero-title">Hello, I’m<br /><span>Toyio Udoete.</span></h1>
-            <p class="hero-role">AI graduate student &amp; researcher</p>
+            <p class="hero-role"><span class="sr-only">AI graduate student &amp; researcher</span><span class="typed" aria-hidden="true" data-text="AI graduate student &amp; researcher">AI graduate student &amp; researcher</span></p>
             <p class="hero-copy">I’m an MS Artificial Intelligence student at the University of Wyoming, where I work with Dr. Shivanand Venkanna Sheshappanavar. My research applies computer vision to PCOS analysis through automated follicular structure detection and clinical diagnostics, with a focus on building AI tools for real healthcare needs.</p>
             <div class="hero-actions">
               <a class="button" href="#work">Explore my work <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -297,7 +303,7 @@
 
           </div>
           <div class="portrait-wrap">
-            <div class="portrait-frame"><img src="assets/images/heroimage.jpeg" alt="Portrait of Toyiomfon Udoete" width="400" height="400" fetchpriority="high" /></div>
+            <div class="portrait-frame"><picture><source srcset="assets/images/portrait.webp" type="image/webp" /><img src="assets/images/portrait.jpg" alt="Portrait of Toyiomfon Udoete" width="900" height="1125" fetchpriority="high" decoding="async" /></picture></div>
           </div>
         </div>
       </section>
@@ -385,6 +391,14 @@
         // Page-load sequence
         requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("is-loaded")));
 
+
+        // Typed role line
+        const typed = document.querySelector(".typed");
+        if (typed && !reduce) {
+          const text = typed.dataset.text; typed.textContent = "";
+          let i = 0;
+          setTimeout(function tick() { typed.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(tick, 38 + Math.random() * 50); }, 650);
+        }
 
         // Scroll reveals
         const groups = [".section-heading", ".education-row", ".skill-line", ".background-column > h3", ".timeline-item", ".project-card", ".contact-grid > *"];
