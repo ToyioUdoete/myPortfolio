@@ -50,6 +50,9 @@
       }
       .skip-link:focus { transform: translateY(0); }
       .shell { width: min(1120px, calc(100% - 64px)); margin-inline: auto; }
+      .back-eyes { position: fixed; left: 16px; bottom: 16px; z-index: 60; display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px 11px 14px; border-radius: 999px; background: var(--accent); color: #fff; font: 600 14px var(--sans); text-decoration: none; box-shadow: 0 10px 26px rgba(0, 49, 82, .28); transition: transform .2s ease; }
+      .back-eyes:hover { transform: translateY(-2px); }
+      .back-eyes[hidden] { display: none; }
       .site-header {
         position: sticky;
         top: 0;
@@ -382,6 +385,16 @@
         <div class="footer-links"><a href="mailto:tudoete@uwyo.edu">Email</a><a href="#top">Back to top ↑</a></div>
       </div>
     </footer>
+    <a class="back-eyes" id="backEyes" href="https://toyioudoete.github.io/throughmybigeyes/" hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Back to through my big eyes</a>
+    <script>
+      // Show the way back only for visitors who came from my photo site.
+      (() => {
+        const back = document.getElementById("backEyes");
+        let came = new URLSearchParams(location.search).get("from") === "bigeyes" || document.referrer.includes("/throughmybigeyes");
+        try { if (came) sessionStorage.setItem("fromBigEyes", "1"); else came = sessionStorage.getItem("fromBigEyes") === "1"; } catch (e) {}
+        if (came) back.hidden = false;
+      })();
+    </script>
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
       (function () {
